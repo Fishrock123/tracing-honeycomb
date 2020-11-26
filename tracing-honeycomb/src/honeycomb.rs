@@ -23,6 +23,7 @@ impl HoneycombTelemetry {
     }
 
     fn report_data(&self, data: HashMap<String, ::libhoney::Value>) {
+        log::debug!("HoneycombTelemetry received data: {:?}", data);
         // succeed or die. failure is unrecoverable (mutex poisoned)
         let mut client = self.honeycomb_client.lock().unwrap();
         let mut ev = client.new_event();
